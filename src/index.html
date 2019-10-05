@@ -5,16 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Practice: </title>
+    <title>Practice: OpenLayers Simplest Example</title>
     <link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
 
 <body>
 
+    <!--
     <section class="map_section"></section>
 
     <script type="module" src="scripts/index.js"></script>
     <script type="module" src="scripts/SimpleGoogleMap.js"></script>
+-->
+
+    <div id="demoMap" style="height:250px"></div>
+
+    <script src="../OpenLayers.js"></script>
+
+    <script>
+        map = new OpenLayers.Map("demoMap");
+        map.addLayer(new OpenLayers.Layer.OSM());
+        map.zoomToMaxExtent();
+    </script>
 
 </body>
 
