@@ -1,33 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Practice: OpenLayers Simplest Example</title>
-    <link rel="stylesheet" type="text/css" href="styles/index.css">
+    <title>OpenLayers Demo</title>
+    <style type="text/css">
+        html,
+        body,
+        #basicMap {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+    <script src="OpenLayers.js"></script>
+    <script>
+        function init() {
+            map = new OpenLayers.Map("basicMap");
+            var mapnik = new OpenLayers.Layer.OSM();
+            var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+            var toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+            var position = new OpenLayers.LonLat(13.41, 52.52).transform(fromProjection, toProjection);
+            var zoom = 15;
+
+            map.addLayer(mapnik);
+            map.setCenter(position, zoom);
+        }
+    </script>
 </head>
 
-<body>
-
-    <!--
-    <section class="map_section"></section>
-
-    <script type="module" src="scripts/index.js"></script>
-    <script type="module" src="scripts/SimpleGoogleMap.js"></script>
--->
-
-    <div id="demoMap" style="height:250px"></div>
-
-    <script src="../OpenLayers.js"></script>
-
-    <script>
-        map = new OpenLayers.Map("demoMap");
-        map.addLayer(new OpenLayers.Layer.OSM());
-        map.zoomToMaxExtent();
-    </script>
-
+<body onload="init();">
+    <div id="basicMap"></div>
 </body>
 
 </html>
